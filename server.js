@@ -1,11 +1,21 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const { app } = require('./app')
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+const { initModels } = require('./models/init.models')
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+const { db } = require('./utils/db')
+
+db.authenticate()
+    .then(() => console.log('Db authenticated'))
+    .catch((err) => console.log(err))
+
+initModels()
+
+db.sync()
+    .then(() => console.log('Db synced'))
+    .catch((err) => console.log(err))
+
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, () => {
+    console.log('Express app running!!', PORT)
 })
