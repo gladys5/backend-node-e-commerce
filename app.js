@@ -1,5 +1,9 @@
 const express = require('express')
-
+const rateLimit = require('express-rate-limit')
+const helmet = require('helmet')
+const compression = require('compression')
+const morgan = require('morgan')
+const path = require('path')
 const { globalErrorHandler } = require('./controllers/error.controller')
 const { AppError } = require('./utils/app.Error.util')
 const { UserRouter } = require('./routes/user.routes')
@@ -8,6 +12,22 @@ const { ProductRouter } = require('./routes/produt.routes')
 
 const app = express()
 app.use(express.json())
+
+const limiter = rateLimit({
+    max: 10000,
+    windowMs: 60 * 60 * 1000,
+    message: 'Number of requests have been exceeded',
+})
+
+app.use(limiter)
+
+app.use(helmet())
+
+app.use(compression())
+
+if (process.env.NODE_ENV === 'development') app.use(morgan('dev'))
+else app.use(morgan('combined'))
+
 app.use('/api/v1/users', UserRouter)
 app.use('/api/v1/carts', CartRouter)
 app.use('/api/v1/products', ProductRouter)
