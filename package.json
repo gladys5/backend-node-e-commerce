@@ -7,12 +7,11 @@
         "node": "^14.x"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
         "start:dev": "nodemon server.js",
         "start": "node server.js"
     },
     "keywords": [],
-    "author": "Gladys yomaira",
+    "author": "",
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",
@@ -22,10 +21,13 @@
         "express-rate-limit": "^6.4.0",
         "express-validator": "^6.14.2",
         "helmet": "^5.1.0",
+        "html-to-text": "^8.2.0",
         "jsonwebtoken": "^8.5.1",
         "morgan": "^1.10.0",
+        "nodemailer": "^6.7.7",
         "pg": "^8.7.3",
         "pg-hstore": "^2.3.4",
+        "pug": "^3.0.2",
         "sequelize": "^6.21.3"
     },
     "devDependencies": {

@@ -9,9 +9,15 @@ const { AppError } = require('./utils/app.Error.util')
 const { UserRouter } = require('./routes/user.routes')
 const { CartRouter } = require('./routes/cart.routes')
 const { ProductRouter } = require('./routes/produt.routes')
+const { viewsRouter } = require('./routes/views.routes')
 
 const app = express()
 app.use(express.json())
+
+app.set('view engine', 'pug')
+app.set('views', path.join(__dirname, 'views'))
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 const limiter = rateLimit({
     max: 10000,
@@ -28,6 +34,7 @@ app.use(compression())
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'))
 else app.use(morgan('combined'))
 
+app.use('/', viewsRouter)
 app.use('/api/v1/users', UserRouter)
 app.use('/api/v1/carts', CartRouter)
 app.use('/api/v1/products', ProductRouter)
