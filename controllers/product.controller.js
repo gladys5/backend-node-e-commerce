@@ -4,6 +4,9 @@ const { Category } = require('../models/category.model')
 
 const { User } = require('../models/user.model')
 const { AppError } = require('../utils/app.Error.util')
+const { ref, uploadBytes } = require('firebase/storage')
+const { Storage } = require('../utils/firebase.util')
+const { ProductImg } = require('../models/productImage.model')
 
 const createProduct = catchAsync(async (req, res, next) => {
     const { sessionUser } = req
@@ -17,11 +20,27 @@ const createProduct = catchAsync(async (req, res, next) => {
         categoryId,
         userId: sessionUser.id,
     })
-    res.status(201).json({ newProduct })
+
+    const imgsPromises = req.files.productImg.map(async (img) => {
+        const imgName = `/img/products/${newProduct.id}-${sessionUser.id}-${img.originalname}`
+        const imgRef = ref(Storage, imgName)
+
+        const result = await uploadBytes(imgRef, img.buffer)
+
+        await ProductImg.create({
+            imgUrl: result.metadata.fullPath,
+            productId: newProduct.id,
+        })
+    })
+
+    await Promise.all(imgsPromises)
+
+    res.status(201).json({ status: 'success', data: { newProduct } })
 })
 
 const getAllProducts = catchAsync(async (req, res, next) => {
     const products = await Product.findAll({
+        required: false,
         where: { status: 'active' },
         include: [
             { model: Category, attributes: ['name'] },
@@ -45,7 +64,7 @@ const updateProduct = catchAsync(async (req, res, next) => {
         quantity,
         price,
     })
-    res.status(201).json({ status: 'success', updateProd })
+    res.status(200).json({ status: 'success', updateProd })
 })
 
 const deleteProduct = catchAsync(async (req, res, next) => {
@@ -58,8 +77,8 @@ const deleteProduct = catchAsync(async (req, res, next) => {
 })
 
 const getAllCategories = catchAsync(async (req, res, next) => {
-    console.log('esta llegando al requerimiento ')
     const categories = await Category.findAll({
+        required: false,
         where: { status: 'active' },
     })
     res.status(200).json({ categories })
@@ -79,18 +98,19 @@ const createNewCategory = catchAsync(async (req, res, next) => {
 })
 
 const updateCategory = catchAsync(async (req, res, next) => {
-    const { id } = req.params
+    const { id } = req.id
     const { name } = req.body
 
     const category = await Category.findOne({
-        where: { id },
+        required: false,
+        where: { id, status: 'active' },
     })
 
     if (!category) {
         return next(new AppError('Category does not exits with given id', 404))
     }
 
-    if (name.length === 0) {
+    if (newName.length === 0) {
         return next(new AppError('The updated name cannot be empty', 400))
     }
 
@@ -98,7 +118,7 @@ const updateCategory = catchAsync(async (req, res, next) => {
         name,
     })
 
-    res.status(201).json({ status: 'success', upCategory })
+    res.status(200).json({ status: 'success', upCategory })
 })
 
 module.exports = {

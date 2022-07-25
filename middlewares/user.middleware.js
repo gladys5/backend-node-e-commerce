@@ -58,7 +58,7 @@ const isAdmin = catchAsync(async (req, res, next) => {
     next()
 })
 
-const protectAccount = catchAsync(async (req, res, next) => {
+const protectAccountOwner = catchAsync(async (req, res, next) => {
     const { sessionUser, user } = req
 
     if (sessionUser.id !== user.id) {
@@ -72,5 +72,5 @@ module.exports = {
     userExist,
     protectToken,
     isAdmin,
-    protectAccount,
+    protectAccountOwner,
 }

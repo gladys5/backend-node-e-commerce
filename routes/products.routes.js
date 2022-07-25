@@ -1,15 +1,11 @@
 const express = require('express')
 
 const {
-    createCategoryValidations,
-    createUserValidations,
+    createProductValidations,
     checkValidations,
 } = require('../middlewares/validation.middlewares')
 
-const {
-    protectAccountOwner,
-    protectToken,
-} = require('../middlewares/user.middleware')
+const { protectToken } = require('../middlewares/user.middleware')
 
 const {
     productExists,
@@ -27,20 +23,28 @@ const {
     updateProduct,
 } = require('../controllers/product.controller')
 
+const { multerUpload } = require('../utils/multer.util')
+
 const router = express.Router()
 
 router.get('/categories', getAllCategories)
 router.get('/:id', productExists, getProductById)
 router.get('/', getAllProducts)
+
 router.use(protectToken)
+
+router.post(
+    '/',
+    multerUpload.fields([{ name: 'productImg', maxCount: 10 }]),
+
+    createProduct
+)
 router
     .route('/:id')
-    .patch(productExists, updateProduct)
+    .patch(productExists, protectProductOwner, updateProduct)
     .delete(productExists, protectProductOwner, deleteProduct)
 
 router.post('/categories', createNewCategory)
-router.post('/', createProduct)
-
 router.patch('/categories/:id', updateCategory)
 
 module.exports = { ProductRouter: router }

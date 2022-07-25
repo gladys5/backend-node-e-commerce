@@ -11,10 +11,8 @@ class Email {
         this.to = to
     }
 
-    // Connect to mail service
     newTransport() {
         if (process.env.NODE_ENV === 'production') {
-            // Connect to SendGrid
             return nodemailer.createTransport({
                 service: 'SendGrid',
                 auth: {
@@ -34,7 +32,6 @@ class Email {
         })
     }
 
-    // Send the actual mail
     async send(template, subject, mailData) {
         const html = pug.renderFile(
             path.join(__dirname, '..', 'views', 'emails', `${template}.pug`),
@@ -50,14 +47,13 @@ class Email {
         })
     }
 
-    async sendWelcome(name) {
-        await this.send('welcome', 'Welcome to our app', { name })
+    async sendWelcome(userName) {
+        await this.send('welcome', 'Welcome to our app', { userName })
     }
 
-    async sendNewPost(title, userId) {
-        await this.send('newPost', 'You have created a new post', {
-            title,
-            userId,
+    async sendNewPost(cart) {
+        await this.send('newPost', ' tanks for you payment', {
+            cart,
         })
     }
 }

@@ -6,6 +6,7 @@ const productExists = catchAsync(async (req, res, next) => {
     const { id } = req.params
 
     const product = await Product.findOne({
+        required: false,
         where: { id, status: 'active' },
     })
 

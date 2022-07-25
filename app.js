@@ -8,9 +8,8 @@ const { globalErrorHandler } = require('./controllers/error.controller')
 const { AppError } = require('./utils/app.Error.util')
 const { UserRouter } = require('./routes/user.routes')
 const { CartRouter } = require('./routes/cart.routes')
-const { ProductRouter } = require('./routes/produt.routes')
+const { ProductRouter } = require('./routes/products.routes')
 const { viewsRouter } = require('./routes/views.routes')
-
 const app = express()
 app.use(express.json())
 

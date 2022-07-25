@@ -53,9 +53,43 @@ const checkValidations = (req, res, next) => {
 
     next()
 }
+const checkParameters = async (req, res, next) => {
+    const { productId, quantity } = req.body
+
+    const product = await Product.findOne({
+        where: {
+            id: productId,
+            status: 'active',
+        },
+    })
+
+    if (!product) {
+        return next(new AppError('Product dont exists', 404))
+    }
+
+    if (parseInt(quantity) > product.quantity || parseInt(quantity) < 0) {
+        return next(
+            new AppError(
+                `There are only ${product.quantity} items of ${product.title}`,
+                404
+            )
+        )
+    }
+
+    next()
+}
+
+const cartValidator = [
+    body('productId').isInt().withMessage('Product Id must be a number'),
+    body('quantity').isInt().withMessage('Quantit must be an integer'),
+    checkValidations,
+    checkParameters,
+]
 module.exports = {
     createProductValidations,
     createUserValidations,
     createCategoryValidations,
     checkValidations,
+    checkParameters,
+    cartValidator,
 }
