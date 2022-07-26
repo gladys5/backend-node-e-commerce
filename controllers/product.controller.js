@@ -98,27 +98,23 @@ const createNewCategory = catchAsync(async (req, res, next) => {
 })
 
 const updateCategory = catchAsync(async (req, res, next) => {
-    const { id } = req.id
+    const { id } = req.params
     const { name } = req.body
 
-    const category = await Category.findOne({
-        required: false,
-        where: { id, status: 'active' },
-    })
+    const categorie = await Category.findOne({ where: { id } })
 
-    if (!category) {
-        return next(new AppError('Category does not exits with given id', 404))
+    if (!categorie) {
+        return next(new AppError('Categorie not found', 400))
     }
 
-    if (newName.length === 0) {
-        return next(new AppError('The updated name cannot be empty', 400))
-    }
-
-    const upCategory = await category.update({
+    await categorie.update({
         name,
     })
 
-    res.status(200).json({ status: 'success', upCategory })
+    res.status(201).json({
+        status: 'success',
+        categorie,
+    })
 })
 
 module.exports = {

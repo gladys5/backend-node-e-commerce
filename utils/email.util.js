@@ -52,7 +52,7 @@ class Email {
     }
 
     async sendNewPost(cart) {
-        await this.send('newPost', ' tanks for you payment', {
+        await this.send('newPost', ' tanks for you pursache', {
             cart,
         })
     }

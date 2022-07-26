@@ -9,16 +9,18 @@ const {
 } = require('../controllers/user.controller')
 const {
     createUserValidations,
+    checkValidations,
 } = require('../middlewares/validation.middlewares')
 const {
     protectToken,
     userExist,
-    protectAccount,
+    protectAccountOwner,
 } = require('../middlewares/user.middleware')
 const router = express.Router()
 
-router.post('/signup', signUp)
+router.post('/', signUp, createUserValidations, checkValidations)
 router.post('/login', login)
+
 router.patch('/:id', protectToken, userExist, updateUser)
 router.delete('/:id', protectToken, desactiveUser)
 router.get('/me', protectToken, getUser)
