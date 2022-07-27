@@ -1,68 +1,57 @@
 extends base
-doctype html
-head
-  meta(charset='UTF-8')
-  meta(name='viewport' content='width=device-width,initial-scale=1')
-  meta(name='x-apple-disable-message-reformatting')
-  title
-  //if mso
-    noscript
-      xml
-        o:officedocumentsettings
-          o:pixelsperinch 96
-  style.
-    table, td, div, h1, p {font-family: Arial, sans-serif;}
-table(role='presentation' style='width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;')
-  tr
-    td(align='center' style='padding:0;')
-      table(role='presentation' style='width:602px;border-collapse:collapse;border:1px solid #cccccc;border-spacing:0;text-align:left;')
-        tr
-          td(align='center' style='padding:40px 0 30px 0;')
-            img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMrZU4wn9kOaGoKvyLBuPgZRX4wQXxaALlDQ&usqp=CAU')
-        tr
-          td(style='padding:36px 30px 42px 30px;')
-            table(role='presentation' style='width:100%;border-collapse:collapse;border:0;border-spacing:0;')
-              tr
-                td(style='padding:0 0 36px 0;color:#153643;')
-                  h1(style='font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;') thanks for your purchase
-                  p(style='margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan et dictum, nisi libero ultricies ipsum, posuere neque at erat.
-                  p(style='margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
-                    a(href='http://www.example.com' style='color:#ee4c50;text-decoration:underline;') In tempus felis blandit
-              tr
-                td(style='padding:0;')
-                  table(role='presentation' style='width:100%;border-collapse:collapse;border:0;border-spacing:0;')
-                    tr
-                      td(style='width:260px;padding:0;vertical-align:top;color:#153643;')
-                        p(style='margin:0 0 25px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
-                          img(src='https://http2.mlstatic.com/D_NQ_NP_958746-MLA49997441739_052022-O.webp' alt='' width='260' style='height:auto;display:block;')
-                        p(style='margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
-                          | Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, est nisi libero ultricies ipsum, in posuere mauris neque at erat.
-                        p(style='margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
-                          a(href='http://www.example.com' style='color:#ee4c50;text-decoration:underline;') Blandit ipsum volutpat sed
-                      td(style='width:20px;padding:0;font-size:0;line-height:0;') &nbsp;
-                      td(style='width:260px;padding:0;vertical-align:top;color:#153643;')
-                        p(style='margin:0 0 25px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
-                          img(src='https://www.cokyoffice.cl/wp-content/uploads/2021/06/libretas-lulu-scaled.jpeg' alt='' width='260' style='height:auto;display:block;')
-                        p(style='margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
-                          | Morbi porttitor, eget est accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed.
-                        p(style='margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
-                          a(href='http://www.example.com' style='color:#ee4c50;text-decoration:underline;') In tempus felis blandit
-        tr
-          td(style='padding:30px;background:#ee4c50;')
-            table(role='presentation' style='width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;')
-              tr
-                td(style='padding:0;width:50%;' align='left')
-                  p(style='margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;')
-                    | &reg; Someone, Somewhere 2022
-                    br
-                    a(href='http://www.example.com' style='color:#ffffff;text-decoration:underline;') Unsubscribe
-                td(style='padding:0;width:50%;' align='right')
-                  table(role='presentation' style='border-collapse:collapse;border:0;border-spacing:0;')
-                    tr
-                      td(style='padding:0 0 0 10px;width:38px;')
-                        a(href='http://www.twitter.com/' style='color:#ffffff;')
-                          img(src='https://assets.codepen.io/210284/tw_1.png' alt='Twitter' width='38' style='height:auto;display:block;border:0;')
-                      td(style='padding:0 0 0 10px;width:38px;')
-                        a(href='http://www.facebook.com/' style='color:#ffffff;')
-                          img(src='https://assets.codepen.io/210284/fb_1.png' alt='Facebook' width='38' style='height:auto;display:block;border:0;')
+
+block emailContent
+  table(role='presentation' style='width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;')
+    tr
+      td(align='center' style='padding:0;')
+        table(role='presentation' style='width:602px;border-collapse:collapse;border:1px solid #cccccc;border-spacing:0;text-align:left;')
+          tr
+            td(align='center' style='padding:40px 0 30px 0;')
+              img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMrZU4wn9kOaGoKvyLBuPgZRX4wQXxaALlDQ&usqp=CAU')
+          tr
+            td(style='padding:36px 30px 42px 30px;')
+              table(role='presentation' style='width:100%;border-collapse:collapse;border:0;border-spacing:0;')
+                tr
+                  td(style='padding:0 0 36px 0;color:#153643;')
+                    h1(style='font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;')  Hello #{userName} thanks for your purchase Total:#{totalPrice}
+                    p(style='margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan et dictum, nisi libero ultricies ipsum, posuere neque at erat.
+                    p(style='margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
+                      a(href='http://www.example.com' style='color:#ee4c50;text-decoration:underline;') In tempus felis blandit
+                tr
+                  td(style='padding:0;')
+                    table(role='presentation' style='width:100%;border-collapse:collapse;border:0;border-spacing:0;')
+                      tr
+                        td(style='width:260px;padding:0;vertical-align:top;color:#153643;')
+                          p(style='margin:0 0 25px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
+                            img(src='https://http2.mlstatic.com/D_NQ_NP_958746-MLA49997441739_052022-O.webp' alt='' width='260' style='height:auto;display:block;')
+                          p(style='margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, est nisi libero ultricies ipsum, in posuere mauris neque at erat.
+                          p(style='margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
+                            a(href='http://www.example.com' style='color:#ee4c50;text-decoration:underline;') Blandit ipsum volutpat sed
+                        td(style='width:20px;padding:0;font-size:0;line-height:0;') &nbsp;
+                        td(style='width:260px;padding:0;vertical-align:top;color:#153643;')
+                          p(style='margin:0 0 25px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
+                            img(src='https://www.cokyoffice.cl/wp-content/uploads/2021/06/libretas-lulu-scaled.jpeg' alt='' width='260' style='height:auto;display:block;')
+                          p(style='margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
+                            | Morbi porttitor, eget est accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed.
+                          p(style='margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
+                            a(href='http://www.example.com' style='color:#ee4c50;text-decoration:underline;') In tempus felis blandit
+          tr
+            td(style='padding:30px;background:#ee4c50;')
+              table(role='presentation' style='width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;')
+                tr
+                  td(style='padding:0;width:50%;' align='left')
+                    p(style='margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;')
+                      | &reg; Someone, Somewhere 2022
+                      br
+                      a(href='http://www.example.com' style='color:#ffffff;text-decoration:underline;') Unsubscribe
+                  td(style='padding:0;width:50%;' align='right')
+                    table(role='presentation' style='border-collapse:collapse;border:0;border-spacing:0;')
+                      tr
+                        td(style='padding:0 0 0 10px;width:38px;')
+                          a(href='http://www.twitter.com/' style='color:#ffffff;')
+                            img(src='https://assets.codepen.io/210284/tw_1.png' alt='Twitter' width='38' style='height:auto;display:block;border:0;')
+                        td(style='padding:0 0 0 10px;width:38px;')
+                          a(href='http://www.facebook.com/' style='color:#ffffff;')
+                            img(src='https://assets.codepen.io/210284/fb_1.png' alt='Facebook' width='38' style='height:auto;display:block;border:0;')
