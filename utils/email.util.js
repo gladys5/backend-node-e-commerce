@@ -12,7 +12,7 @@ class Email {
     }
 
     newTransport() {
-        if (process.env.NODE_ENV === 'production') {
+        if (process.env.NODE_ENV === 'development') {
             return nodemailer.createTransport({
                 service: 'SendGrid',
                 auth: {
@@ -51,8 +51,12 @@ class Email {
         await this.send('welcome', 'Welcome to our app', { userName })
     }
 
-    async sendNewPost(totalPrice) {
-        await this.send('newPost', ' tanks for you pursache', { totalPrice })
+    async sendNewPost(totalPrice, cart, newOrder) {
+        await this.send('newPost', 'Thanks for shopping with us', {
+            totalPrice,
+            cart,
+            newOrder,
+        })
     }
 }
 

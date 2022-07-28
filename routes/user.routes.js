@@ -18,7 +18,7 @@ const {
 } = require('../middlewares/user.middleware')
 const router = express.Router()
 
-router.post('/', signUp, createUserValidations, checkValidations)
+router.post('/', createUserValidations, checkValidations, signUp)
 router.post('/login', login)
 
 router.patch('/:id', protectToken, userExist, updateUser)

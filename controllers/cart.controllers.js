@@ -164,7 +164,7 @@ const purchase = catchAsync(async (req, res, next) => {
         totalPrice,
     })
 
-    await new Email(sessionUser.email).sendNewPost(totalPrice)
+    await new Email(sessionUser.email).sendNewPost(totalPrice, cart, newOrder)
 
     res.status(200).json({ status: 'success', cart, newOrder })
 })

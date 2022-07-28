@@ -13,8 +13,19 @@ block emailContent
               table(role='presentation' style='width:100%;border-collapse:collapse;border:0;border-spacing:0;')
                 tr
                   td(style='padding:0 0 36px 0;color:#153643;')
-                    h1(style='font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;')  Hello #{userName} thanks for your purchase Total:#{totalPrice}
+                    h1(style='font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;') 
                     p(style='margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
+                      tr.heading
+                        td Item
+                        td Price
+                      each productInCart in cart.productInCarts
+                        tr.item
+                          td  titulo: #{productInCart.product.title}
+                          td  precio del producto: $#{productInCart.product.price}
+                          td  cantidad: #{productInCart.product.quantity}
+                      tr.total
+                        td
+                        td Total: $#{newOrder.totalPrice}
                       | Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan et dictum, nisi libero ultricies ipsum, posuere neque at erat.
                     p(style='margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;')
                       a(href='http://www.example.com' style='color:#ee4c50;text-decoration:underline;') In tempus felis blandit
